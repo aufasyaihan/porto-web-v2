@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import type { ProjectEntry } from "@/lib/content";
-import SectionRevealer from "./section-revealer";
+import SectionRevealer from "../section-revealer";
 
 export default function Projects({ data }: { data: ProjectEntry[] }) {
   const [active, setActive] = useState(0);
@@ -42,7 +42,7 @@ export default function Projects({ data }: { data: ProjectEntry[] }) {
                   </span>
                   <span
                     className={`block mt-3 text-[1.25rem] font-semibold tracking-[-0.02em] transition-colors duration-200 ${
-                      active === i ? "text-white" : "text-text-2"
+                      active === i ? "text-text" : "text-text-2"
                     }`}
                   >
                     {project.title}
@@ -132,7 +132,7 @@ function ProjectLink({
       rel="noopener noreferrer"
       data-cursor="hover"
       whileHover={{ y: -2 }}
-      className="inline-flex items-center gap-2 font-mono text-[0.75rem] tracking-[0.1em] uppercase text-text-2 border border-border px-4 py-2 transition-colors duration-200 hover:text-white hover:border-white"
+      className="inline-flex items-center gap-2 font-mono text-[0.75rem] tracking-[0.1em] uppercase text-text-2 border border-border px-4 py-2 transition-colors duration-200 hover:text-text hover:border-text"
     >
       <Icon size={14} />
       {label}

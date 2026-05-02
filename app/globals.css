@@ -31,6 +31,33 @@
 }
 
 /* ─── Base ──────────────────────────────────────────────── */
+:root,
+.dark {
+  --color-bg: #000000;
+  --color-surface: #0a0a0a;
+  --color-card: #111111;
+  --color-border: #1f1f1f;
+  --color-border-2: #2a2a2a;
+  --color-text: #ffffff;
+  --color-text-2: #999999;
+  --color-text-3: #555555;
+  --color-accent: #ffffff;
+  color-scheme: dark;
+}
+
+.light {
+  --color-bg: #f7f4ef;
+  --color-surface: #eee9df;
+  --color-card: #ffffff;
+  --color-border: #ded6c9;
+  --color-border-2: #c7bcab;
+  --color-text: #151515;
+  --color-text-2: #55504a;
+  --color-text-3: #8a8175;
+  --color-accent: #151515;
+  color-scheme: light;
+}
+
 html {
   scroll-behavior: smooth;
   background-color: var(--color-bg);
@@ -83,8 +110,8 @@ body::after {
 
 /* ─── Selection & Scrollbar ─────────────────────────────── */
 ::selection {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: var(--color-text);
+  color: var(--color-bg);
 }
 
 ::-webkit-scrollbar { width: 4px; }
@@ -107,7 +134,7 @@ body::after {
 .cursor-dot {
   width: 6px;
   height: 6px;
-  background: #ffffff;
+  background: var(--color-text);
   mix-blend-mode: difference;
 }
 
@@ -132,7 +159,7 @@ body::after {
 .cursor-ring.cursor-text {
   width: 72px;
   height: 72px;
-  background: #ffffff;
+  background: var(--color-text);
   border-color: transparent;
 }
 

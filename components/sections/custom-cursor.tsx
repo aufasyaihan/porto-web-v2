@@ -61,7 +61,7 @@ export default function CustomCursor() {
     <>
       {/* Dot */}
       <motion.div
-        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full pointer-events-none z-[10000] will-change-transform bg-white mix-blend-difference"
+        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full pointer-events-none z-[10000] will-change-transform bg-text mix-blend-difference"
         style={{
           x: dotX,
           y: dotY,
@@ -74,10 +74,10 @@ export default function CustomCursor() {
       <motion.div
         className={`fixed top-0 left-0 rounded-full pointer-events-none z-[10000] will-change-transform mix-blend-difference transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           cursorState === "hover"
-            ? "w-20 h-20 border border-white/80 bg-white/5"
+            ? "w-20 h-20 border border-text bg-text/5"
             : cursorState === "text"
-            ? "w-[72px] h-[72px] border border-transparent bg-white"
-            : "w-9 h-9 border border-white/50 bg-transparent"
+            ? "w-[72px] h-[72px] border border-transparent bg-text"
+            : "w-9 h-9 border border-text-2 bg-transparent"
         }`}
         style={{
           x: ringX,
@@ -87,7 +87,7 @@ export default function CustomCursor() {
         }}
       >
         {cursorState === "text" && label && (
-          <span className="absolute inset-0 flex items-center justify-center text-[9px] font-semibold tracking-[0.15em] uppercase text-black font-mono select-none">
+          <span className="absolute inset-0 flex items-center justify-center text-[9px] font-semibold tracking-[0.15em] uppercase text-bg font-mono select-none">
             {label}
           </span>
         )}

@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import type { ExperienceEntry } from "@/lib/content";
-import SectionRevealer from "./section-revealer";
+import SectionRevealer from "../section-revealer";
 
 export default function Experience({ data }: { data: ExperienceEntry[] }) {
   const [active, setActive] = useState<number | null>(null);
@@ -33,7 +33,7 @@ export default function Experience({ data }: { data: ExperienceEntry[] }) {
 
         <div
           ref={containerRef}
-          className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-24"
+          className="relative grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-24"
         >
           {/* Timeline spine */}
           <div className="hidden md:block relative">
@@ -42,7 +42,7 @@ export default function Experience({ data }: { data: ExperienceEntry[] }) {
               <div className="absolute left-[7px] top-0 bottom-0 w-[1px] bg-border" />
               {/* Progress line */}
               <div
-                className="absolute left-[7px] top-0 w-[1px] bg-white transition-[height] duration-75 ease-linear"
+                className="absolute left-[7px] top-0 w-[1px] bg-text transition-[height] duration-75 ease-linear"
                 style={{ height: `${lineHeight}%` }}
               />
 
@@ -58,7 +58,7 @@ export default function Experience({ data }: { data: ExperienceEntry[] }) {
                     <div
                       className={`absolute left-0 w-[15px] h-[15px] rounded-full border transition-colors duration-300 mt-[2px] ${
                         active === i
-                          ? "bg-white border-white"
+                          ? "bg-text border-text"
                           : "bg-bg border-border-2"
                       }`}
                     />
@@ -68,7 +68,7 @@ export default function Experience({ data }: { data: ExperienceEntry[] }) {
                       </p>
                       <p
                         className={`text-[0.95rem] font-medium transition-colors duration-200 ${
-                          active === i ? "text-white" : "text-text-2"
+                          active === i ? "text-text" : "text-text-2"
                         }`}
                       >
                         {entry.company}
@@ -89,9 +89,9 @@ export default function Experience({ data }: { data: ExperienceEntry[] }) {
                   data-cursor="text"
                   data-cursor-label="VIEW"
                   onClick={() => setActive(active === i ? null : i)}
-                  className={`p-8 cursor-none transition-colors duration-300 border hover:border-white/15 ${
+                  className={`p-8 cursor-none transition-colors duration-300 border hover:border-border-2 ${
                     active === i
-                      ? "border-white/20 bg-card"
+                      ? "border-border-2 bg-card"
                       : "border-border bg-transparent"
                   }`}
                 >

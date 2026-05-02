@@ -3,7 +3,8 @@
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
-import SectionRevealer from "./section-revealer";
+import SectionRevealer from "../section-revealer";
+import { PORTOFOLIO } from "@/lib/constant";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -12,7 +13,7 @@ export default function Contact() {
   const [status, setStatus] = useState<Status>("idle");
   const [focused, setFocused] = useState<string | null>(null);
 
-  const send = async (e: React.FormEvent) => {
+  const send = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formRef.current || status === "loading") return;
 
@@ -64,12 +65,12 @@ export default function Contact() {
               {/* Contact details */}
               <div className="flex flex-col gap-4">
                 <a
-                  href="mailto:you@example.com"
+                  href={`mailto:${PORTOFOLIO.EMAIL}`}
                   data-cursor="hover"
-                  className="flex items-center gap-3 font-mono text-[0.8rem] text-text-2 transition-colors duration-200 hover:text-white"
+                  className="flex items-center gap-3 font-mono text-[0.8rem] text-text-2 transition-colors duration-200 hover:text-text"
                 >
                   <span className="text-text-3">✉</span>
-                  you@example.com
+                  {PORTOFOLIO.EMAIL}
                 </a>
                 <p className="flex items-center gap-3 font-mono text-[0.8rem] text-text-2">
                   <span className="text-text-3">📍</span>
@@ -90,7 +91,7 @@ export default function Contact() {
                 <div
                   key={field.name}
                   className={`border-b transition-colors duration-300 mb-8 ${
-                    focused === field.name ? "border-white/50" : "border-border-2"
+                    focused === field.name ? "border-text" : "border-border-2"
                   }`}
                 >
                   <label
@@ -107,7 +108,7 @@ export default function Contact() {
                     required
                     onFocus={() => setFocused(field.name)}
                     onBlur={() => setFocused(null)}
-                    className="w-full bg-transparent border-none outline-none text-white text-base py-2 font-sans caret-white placeholder:text-text-3"
+                    className="w-full bg-transparent border-none outline-none text-text text-base py-2 font-sans caret-text placeholder:text-text-3"
                   />
                 </div>
               ))}
@@ -115,7 +116,7 @@ export default function Contact() {
               {/* Message */}
               <div
                 className={`border-b transition-colors duration-300 mb-10 ${
-                  focused === "message" ? "border-white/50" : "border-border-2"
+                  focused === "message" ? "border-text" : "border-border-2"
                 }`}
               >
                 <label
@@ -132,7 +133,7 @@ export default function Contact() {
                   required
                   onFocus={() => setFocused("message")}
                   onBlur={() => setFocused(null)}
-                  className="w-full bg-transparent border-none outline-none text-white text-base py-2 font-sans caret-white resize-none leading-[1.7] placeholder:text-text-3"
+                  className="w-full bg-transparent border-none outline-none text-text text-base py-2 font-sans caret-text resize-none leading-[1.7] placeholder:text-text-3"
                 />
               </div>
 
@@ -142,13 +143,18 @@ export default function Contact() {
                 disabled={status === "loading" || status === "success"}
                 data-cursor="hover"
                 whileHover={
-                  status === "idle" ? { backgroundColor: "#fff", color: "#000" } : {}
+                  status === "idle"
+                    ? {
+                        backgroundColor: "var(--color-text)",
+                        color: "var(--color-bg)",
+                      }
+                    : {}
                 }
                 whileTap={{ scale: 0.98 }}
                 className={`self-start flex items-center gap-3 px-8 py-3.5 text-[0.8rem] font-semibold tracking-[0.1em] uppercase font-mono transition-colors duration-300 border ${
                   status === "success"
-                    ? "bg-white text-black border-white"
-                    : "bg-transparent text-white border-white/30"
+                    ? "bg-text text-bg border-text"
+                    : "bg-transparent text-text border-border-2"
                 } ${status === "loading" ? "cursor-wait" : "cursor-none"}`}
               >
                 <AnimatePresence mode="wait">
@@ -214,7 +220,7 @@ function Spinner() {
     <motion.span
       animate={{ rotate: 360 }}
       transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
-      className="inline-block w-3 h-3 border-2 border-white/30 border-t-white rounded-full shrink-0"
+      className="inline-block w-3 h-3 border-2 border-border-2 border-t-text rounded-full shrink-0"
     />
   );
 }

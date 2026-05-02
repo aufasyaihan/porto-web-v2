@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { PORTOFOLIO } from "@/lib/constant";
 
 export default function Footer() {
   const [year, setYear] = useState(2025);
@@ -17,16 +18,16 @@ export default function Footer() {
   }, []);
 
   const socials = [
-    { label: "GitHub", href: "https://github.com/yourusername" },
-    { label: "LinkedIn", href: "https://linkedin.com/in/yourusername" },
-    { label: "Email", href: "mailto:you@example.com" },
+    { label: "GitHub", href: PORTOFOLIO.URL.GITHUB },
+    { label: "LinkedIn", href: PORTOFOLIO.URL.LINKEDIN },
+    { label: "Email", href: `mailto:${PORTOFOLIO.EMAIL}` },
   ];
 
   return (
     <footer className="border-t border-border py-12 bg-bg">
       <div className="max-w-[1200px] mx-auto px-8 flex justify-between items-center flex-wrap gap-4">
         <p className="font-mono text-[0.7rem] text-text-3 tracking-[0.05em]">
-          © {year} Your Name. Built with Next.js &amp; Framer Motion.
+          <span>©{year} </span> Aufa. Built with Love.
         </p>
 
         <div className="flex gap-8">
@@ -38,7 +39,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               data-cursor="hover"
               whileHover={{ y: -2 }}
-              className="font-mono text-[0.7rem] tracking-[0.1em] uppercase text-text-3 transition-colors duration-200 hover:text-white"
+              className="font-mono text-[0.7rem] tracking-[0.1em] uppercase text-text-3 transition-colors duration-200 hover:text-text"
             >
               {s.label}
             </motion.a>

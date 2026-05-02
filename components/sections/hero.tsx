@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { PORTOFOLIO } from "@/lib/constant";
 
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%";
 
@@ -87,7 +88,7 @@ export default function Hero({ name }: { name: string }) {
 
         {/* Name — scramble reveal */}
         <h1
-          className="font-sans text-[clamp(3rem,12vw,7rem)] font-bold tracking-[-0.04em] leading-[0.9] text-white whitespace-pre-wrap mb-8 tabular-nums"
+          className="font-sans text-[clamp(3rem,12vw,7rem)] font-bold tracking-[-0.04em] leading-[0.9] text-text whitespace-pre-wrap mb-8 tabular-nums"
           aria-label={name}
         >
           {scrambled}
@@ -100,9 +101,9 @@ export default function Hero({ name }: { name: string }) {
           transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-[clamp(1rem,2.5vw,1.3rem)] text-text-2 font-light tracking-[0.02em] mb-12"
         >
-          Web Developer — Building at the intersection of{" "}
-          <em className="text-white not-italic">design</em> &amp;{" "}
-          <em className="text-white not-italic">engineering</em>
+          {PORTOFOLIO.ROLE} — Building at the intersection of{" "}
+          <em className="text-text not-italic">design</em> &amp;{" "}
+          <em className="text-text not-italic">engineering</em>
         </motion.p>
 
         {/* CTA */}
@@ -115,14 +116,14 @@ export default function Hero({ name }: { name: string }) {
           <a
             href="#about"
             data-cursor="hover"
-            className="inline-flex items-center gap-2 py-[0.85rem] px-8 bg-white text-black text-[0.85rem] font-semibold tracking-[0.05em] uppercase border border-white transition-colors duration-300 hover:bg-black hover:text-white"
+            className="inline-flex items-center gap-2 py-[0.85rem] px-8 bg-text text-bg text-[0.85rem] font-semibold tracking-[0.05em] uppercase border border-text transition-colors duration-300 hover:bg-bg hover:text-text"
           >
             View Work
           </a>
           <a
             href="#contact"
             data-cursor="hover"
-            className="inline-flex items-center gap-2 py-[0.85rem] px-8 bg-transparent text-white text-[0.85rem] font-semibold tracking-[0.05em] uppercase border border-white/20 transition-colors duration-300 hover:border-white"
+            className="inline-flex items-center gap-2 py-[0.85rem] px-8 bg-transparent text-text text-[0.85rem] font-semibold tracking-[0.05em] uppercase border border-border-2 transition-colors duration-300 hover:border-text"
           >
             Contact Me
           </a>
@@ -142,7 +143,7 @@ export default function Hero({ name }: { name: string }) {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          className="w-[1px] h-10 bg-gradient-to-b from-white/50 to-transparent"
+          className="w-[1px] h-10 bg-gradient-to-b from-text-2 to-transparent"
         />
       </motion.div>
     </section>
@@ -156,7 +157,7 @@ function DotGrid() {
       className="absolute inset-0 z-0"
       style={{
         backgroundImage:
-          "radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)",
+          "radial-gradient(circle, color-mix(in srgb, var(--color-text) 9%, transparent) 1px, transparent 1px)",
         backgroundSize: "40px 40px",
         maskImage:
           "radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)",

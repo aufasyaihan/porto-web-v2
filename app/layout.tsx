@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, DM_Mono } from "next/font/google";
 import "./globals.css";
-import CustomCursor from "@/components/custom-cursor";
-import Navbar from "@/components/navbar";
+import CustomCursor from "@/components/sections/custom-cursor";
+import Navbar from "@/components/navigations/navbar";
+import ThemeToggle from "@/components/theme-toggle";
+import ThemeProvider from "@/providers/theme-provider";
+import { PORTOFOLIO } from "@/lib/constant";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -18,11 +21,11 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aufa Syaihan Azzahidi — Web Developer",
+  title: `${PORTOFOLIO.NAME} — ${PORTOFOLIO.ROLE}`,
   description:
-    "Personal portfolio of Aufa Syaihan Azzahidi — a Web Developer crafting digital experiences at the intersection of design and engineering.",
+    `Personal portfolio of ${PORTOFOLIO.NAME} — a ${PORTOFOLIO.ROLE} crafting digital experiences at the intersection of design and engineering.`,
   openGraph: {
-    title: "Aufa Syaihan Azzahidi — Web Developer",
+    title: `${PORTOFOLIO.NAME} — ${PORTOFOLIO.ROLE}`,
     description:
       "Personal portfolio showcasing work, experience, and certifications.",
     type: "website",
@@ -36,11 +39,15 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${spaceGrotesk.variable} ${dmMono.variable}`}
+      suppressHydrationWarning
     >
-      <body className="antialiased font-sans bg-bg text-text selection:bg-white selection:text-black">
-        <CustomCursor />
-        <Navbar />
-        {children}
+      <body className="antialiased font-sans bg-bg text-text selection:bg-text selection:text-bg">
+        <ThemeProvider>
+          <CustomCursor />
+          <Navbar />
+          <ThemeToggle />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

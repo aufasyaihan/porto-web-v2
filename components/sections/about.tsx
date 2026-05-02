@@ -1,15 +1,23 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
-import { FaEnvelope, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import type { AboutData } from "@/lib/content";
-import SectionRevealer from "./section-revealer";
+import SectionRevealer from "../section-revealer";
+import { useTheme } from "next-themes";
+import { cn } from "@/lib/utils";
 
 export default function About({ data }: { data: AboutData }) {
   const statsRef = useRef<HTMLDivElement>(null);
   const statsInView = useInView(statsRef, { once: true });
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   const stats = [
     { value: 6, label: "Years Exp.", suffix: "+" },
@@ -44,7 +52,10 @@ export default function About({ data }: { data: AboutData }) {
                     src={data.photo}
                     alt={data.name}
                     fill
-                    className="object-cover grayscale"
+                    className={cn(
+                      "object-cover",
+                      mounted && resolvedTheme === "dark" && "grayscale"
+                    )}
                     sizes="(max-width: 768px) 100vw, 360px"
                   />
                 ) : (
@@ -58,7 +69,7 @@ export default function About({ data }: { data: AboutData }) {
 
                 {/* Available badge */}
                 {data.available && (
-                  <div className="absolute top-4 right-4 flex items-center gap-[6px] px-2.5 py-1 bg-black/80 border border-white/15 backdrop-blur-md text-[0.65rem] font-mono tracking-[0.1em] uppercase">
+                  <div className="absolute top-4 right-4 flex items-center gap-[6px] px-2.5 py-1 bg-bg/80 border border-border backdrop-blur-md text-[0.65rem] font-mono tracking-[0.1em] uppercase">
                     <span className="w-1.5 h-1.5 rounded-full bg-green-400 shadow-[0_0_6px_#4ade80] animate-pulse" />
                     Available
                   </div>
@@ -121,7 +132,10 @@ export default function About({ data }: { data: AboutData }) {
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={statsInView ? { opacity: 1, scale: 1 } : {}}
                       transition={{ delay: i * 0.04, duration: 0.4 }}
-                      whileHover={{ borderColor: "#fff", color: "#fff" }}
+                      whileHover={{
+                        borderColor: "var(--color-text)",
+                        color: "var(--color-text)",
+                      }}
                       className="px-3.5 py-1.5 text-[0.75rem] font-mono text-text-2 border border-border-2 tracking-[0.05em] cursor-default transition-colors duration-200"
                     >
                       {skill}
@@ -187,7 +201,7 @@ function AnimatedCount({
   return (
     <span
       ref={ref}
-      className="text-[1.75rem] font-bold tracking-[-0.03em] text-white block"
+      className="text-[1.75rem] font-bold tracking-[-0.03em] text-text block"
     >
       0{suffix}
     </span>
@@ -202,7 +216,7 @@ function SocialLink({ href, label }: { href: string; label: string }) {
       rel="noopener noreferrer"
       data-cursor="hover"
       whileHover={{ y: -2 }}
-      className="font-mono text-[0.75rem] tracking-[0.1em] uppercase text-text-3 border-b border-border-2 pb-0.5 transition-colors duration-200 hover:text-white hover:border-white"
+      className="font-mono text-[0.75rem] tracking-[0.1em] uppercase text-text-3 border-b border-border-2 pb-0.5 transition-colors duration-200 hover:text-text hover:border-text"
     >
       {label} ↗
     </motion.a>

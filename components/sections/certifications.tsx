@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import type { CertEntry } from "@/lib/content";
-import SectionRevealer from "./section-revealer";
+import SectionRevealer from "../section-revealer";
 
 export default function Certifications({ data }: { data: CertEntry[] }) {
   return (
@@ -83,23 +83,23 @@ function CertCard({ cert }: { cert: CertEntry }) {
 
         {/* Back */}
         <div
-          className="absolute inset-0 backface-hidden bg-white text-black p-7 flex flex-col justify-between"
+          className="absolute inset-0 backface-hidden bg-text text-bg p-7 flex flex-col justify-between"
           style={{ transform: "rotateY(180deg)" }}
         >
           <div>
-            <p className="font-mono text-[0.6rem] tracking-[0.2em] uppercase text-black/40 mb-2">
+            <p className="font-mono text-[0.6rem] tracking-[0.2em] uppercase text-bg/50 mb-2">
               Certified
             </p>
             <p className="text-base font-bold tracking-[-0.02em] leading-[1.2] mb-2">
               {cert.name}
             </p>
-            <p className="text-[0.8rem] text-black/50">
+            <p className="text-[0.8rem] text-bg/60">
               {cert.issuer}
             </p>
           </div>
 
           <div className="flex justify-between items-center">
-            <span className="font-mono text-[0.7rem] text-black/40">
+            <span className="font-mono text-[0.7rem] text-bg/50">
               {cert.date}
             </span>
             {cert.credentialUrl && (
@@ -108,7 +108,7 @@ function CertCard({ cert }: { cert: CertEntry }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="font-mono text-[0.68rem] tracking-[0.08em] uppercase text-black border-b border-black/30 pb-[1px]"
+                className="font-mono text-[0.68rem] tracking-[0.08em] uppercase text-bg border-b border-bg/40 pb-[1px]"
               >
                 Verify ↗
               </a>

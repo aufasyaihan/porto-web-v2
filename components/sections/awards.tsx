@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import type { AwardEntry } from "@/lib/content";
-import SectionRevealer from "./section-revealer";
+import SectionRevealer from "../section-revealer";
 
 export default function Awards({ data }: { data: AwardEntry[] }) {
   return (

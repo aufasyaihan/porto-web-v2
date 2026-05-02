@@ -6,15 +6,15 @@ import {
   getAwards,
   getEducation,
 } from "@/lib/content";
-import Hero from "@/components/hero";
-import About from "@/components/about";
-import Experience from "@/components/experience";
-import Projects from "@/components/projects";
-import Certifications from "@/components/certifications";
-import Awards from "@/components/awards";
-import Education from "@/components/education";
-import Contact from "@/components/contact";
-import Footer from "@/components/footer";
+import Hero from "@/components/sections/hero";
+import About from "@/components/sections/about";
+import Experience from "@/components/sections/experience";
+import Projects from "@/components/sections/projects";
+import Certifications from "@/components/sections/certifications";
+import Awards from "@/components/sections/awards";
+import Education from "@/components/sections/education";
+import Contact from "@/components/sections/contact";
+import Footer from "@/components/sections/footer";
 
 export default async function Home() {
   const [about, experience, projects, certifications, awards, education] =
