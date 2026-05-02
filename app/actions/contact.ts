@@ -6,9 +6,7 @@ const ContactSchema = z.object({
   from_name: z
     .string({ message: 'Name is required.' })
     .min(2, 'Name must be at least 2 characters.'),
-  reply_to: z
-    .string({ message: 'Email is required.' })
-    .email('Please enter a valid email address.'),
+  reply_to: z.email({ message: 'Email is required.' }),
   message: z
     .string({ message: 'Message is required.' })
     .min(10, 'Message must be at least 10 characters.'),
