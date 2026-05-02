@@ -1,19 +1,10 @@
 ---
 education:
-  - degree: "Bachelor of Computer Science"
-    institution: "Universitas Indonesia"
-    period: "2015 — 2019"
-    logo: ""
+  - degree: "Bachelor of Informatics"
+    institution: "Jenderal Soedirman University"
+    period: "2021 — 2025"
+    logo: "/images/edu.png"
     description: |
-      Graduated with honours. Thesis on distributed caching strategies for
-      high-traffic web applications. Active member of the computing student association
-      and organised annual hackathon events.
-
-  - degree: "Full Stack Web Development Bootcamp"
-    institution: "Hacktiv8 Indonesia"
-    period: "2019"
-    logo: ""
-    description: |
-      Intensive 12-week program covering modern JavaScript, React, Node.js,
-      and PostgreSQL. Built 5 full-stack projects in a collaborative team environment.
+      Graduated with 3.90/4.00 GPA, active in Informatic Student Association, Student Executive Board,
+      and Laboratory Assistant. Won second place on UI/UX Competition. Published a journal on Jurnal Teknik Informatika (JUTIF).
 ---

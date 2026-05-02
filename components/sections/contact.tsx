@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import SectionRevealer from "../section-revealer";
 import { PORTOFOLIO } from "@/lib/constant";
+import { Mail, MapPin } from "lucide-react";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -35,8 +36,8 @@ export default function Contact() {
   };
 
   const fields = [
-    { name: "from_name", label: "Your Name", type: "text", placeholder: "John Doe" },
-    { name: "reply_to", label: "Email Address", type: "email", placeholder: "john@example.com" },
+    { name: "from_name", label: "Your Name", type: "text", placeholder: "John Cow Wee" },
+    { name: "reply_to", label: "Email Address", type: "email", placeholder: "hedopejohncowwee@gmail.com" },
   ];
 
   return (
@@ -69,11 +70,11 @@ export default function Contact() {
                   data-cursor="hover"
                   className="flex items-center gap-3 font-mono text-[0.8rem] text-text-2 transition-colors duration-200 hover:text-text"
                 >
-                  <span className="text-text-3">✉</span>
+                  <span className="text-text-3"><Mail /></span>
                   {PORTOFOLIO.EMAIL}
                 </a>
                 <p className="flex items-center gap-3 font-mono text-[0.8rem] text-text-2">
-                  <span className="text-text-3">📍</span>
+                  <span className="text-text-3"><MapPin /></span>
                   Indonesia — Available Remotely
                 </p>
               </div>

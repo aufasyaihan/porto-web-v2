@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { PORTOFOLIO } from "@/lib/constant";
+import { Mouse } from "lucide-react";
 
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%";
 
@@ -145,6 +146,7 @@ export default function Hero({ name, year }: { name: string; year: number }) {
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
           className="w-[1px] h-10 bg-gradient-to-b from-text-2 to-transparent"
         />
+        <Mouse />
       </motion.div>
     </section>
   );

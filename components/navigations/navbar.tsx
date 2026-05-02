@@ -106,7 +106,7 @@ export default function Navbar() {
           aria-label="Primary"
           className={`pointer-events-auto mx-auto flex items-center justify-between transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             scrolled
-              ? "mt-4 h-14 w-[min(880px,calc(100vw-2rem))] gap-8 rounded-full border border-border bg-bg/70 px-5 shadow-[0_18px_60px_rgba(0,0,0,0.24)] backdrop-blur-xl"
+              ? "mt-4 h-14 w-[min(880px,calc(100vw-2rem))] gap-8 rounded-full border border-border bg-bg/70 px-5 shadow-[0_18px_60px_rgba(0,0,0,0.24)] backdrop-blur-sm"
               : "mt-0 h-16 w-[min(1200px,calc(100vw-4rem))] gap-10 rounded-none border-b border-transparent bg-transparent px-8 shadow-none backdrop-blur-none"
           }`}
         >

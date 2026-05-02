@@ -1,35 +1,30 @@
 ---
 projects:
-  - title: "Portfolio Website"
-    type: "Personal Site"
+  - title: "Gate By Manjo"
+    type: "Web Application"
     period: "2026"
     description: |
-      A motion-rich personal portfolio built with Next.js, Markdown content,
-      and a custom cursor system. Designed to keep profile updates simple while
-      preserving a polished, interactive browsing experience.
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"]
-    githubUrl: "https://github.com/aufasyaihan/porto-web"
-    liveUrl: ""
+      An all-in-one solution for merchant with QRIS Generator, Virtual Account Generator, Point Of Sale,
+      and dashboard report. With an ease of use for beginners.
+    tags: ["Sveltekit", "TypeScript", "Tailwind", "Golang", "Fiber", "Better Auth"]
+    githubUrl: ""
+    liveUrl: "https://dashboard.manjo.co.id"
 
-  - title: "Analytics Dashboard"
+  - title: "AI CRM"
     type: "Web Application"
-    period: "2024"
+    period: "2025"
     description: |
-      Built a responsive dashboard for monitoring product metrics, surfacing
-      trends, and comparing funnel performance across teams. Focused on clean
-      data presentation and fast interaction on dense screens.
-    tags: ["React", "TypeScript", "Charts", "REST APIs"]
+      An AI-powered CRM designed to centralize and streamline e-commerce operations. Our platform addresses the critical needs of modern online businesses, from customer support to client acquisition, offering seamless integration across multiple channels. 
+    tags: ["React", "TypeScript", "Shadcn", "Next.js", "Tailwind"]
     githubUrl: ""
-    liveUrl: ""
+    liveUrl: "https://purple-box-crm-refractor.vercel.app"
 
-  - title: "Commerce Storefront"
-    type: "E-commerce"
-    period: "2023"
+  - title: "Movie List"
+    type: "Web Application"
+    period: "2025"
     description: |
-      Developed a storefront experience with product browsing, cart flows, and
-      checkout handoff. Optimized page structure, image loading, and UI states
-      for a smoother mobile shopping path.
-    tags: ["Next.js", "Node.js", "PostgreSQL", "Stripe"]
-    githubUrl: ""
-    liveUrl: ""
+      A Full information of movies, with genres and year filter. Fetch data using TMDB APIs.
+    tags: ["Next.js", "React", "Typescript", "TMDB"]
+    githubUrl: "https://github.com/aufasyaihan/my-movie-list"
+    liveUrl: "https://ivlix.vercel.app/"
 ---

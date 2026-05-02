@@ -9,28 +9,30 @@ bio: |
     Currently open to new opportunities.
 photo: "/images/aufa.jpeg"
 stats:
-    - value: 6
+    - value: 1
       label: "Years Exp."
       suffix: "+"
-    - value: 40
+    - value: 5
       label: "Projects Shipped"
       suffix: "+"
-    - value: 6
+    - value: 10
       label: "Technologies"
       suffix: ""
 skills:
     - TypeScript
     - React / Next.js
+    - Svelte / Sveltekit
+    - Vue / Nuxt.js
+    - React Native
     - Node.js
     - PostgreSQL
     - Docker
     - Figma
+    - Golang
 socials:
     github: "https://github.com/aufasyaihan"
     linkedin: "https://www.linkedin.com/in/aufa-syaihan-azzahidi/"
     email: "aufa.azzahidi@gmail.com"
 ---
 
-I believe good software is both technically sound and beautifully designed. With years of experience across the full stack, I've shipped products used by thousands — from early-stage startups to enterprise teams.
-
-When I'm not writing code, I'm exploring design systems, contributing to open source, and constantly learning.
+ Every soul arrives with a purpose, not written in stone, but in silence, waiting to be heard by those brave enough to stop and listen.

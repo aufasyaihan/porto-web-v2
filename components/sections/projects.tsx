@@ -6,6 +6,8 @@ import { ExternalLink } from "lucide-react";
 import { ProjectEntry } from "@/types/project";
 import SectionRevealer from "../section-revealer";
 import { FaGithub } from "react-icons/fa";
+import { PORTOFOLIO } from "@/lib/constant";
+import Link from "next/link";
 
 export default function Projects({ data }: { data: ProjectEntry[] }) {
   const [active, setActive] = useState(0);
@@ -51,6 +53,9 @@ export default function Projects({ data }: { data: ProjectEntry[] }) {
                 </button>
               </SectionRevealer>
             ))}
+            <Link href={PORTOFOLIO.URL.GITHUB} target="_blank" rel="noopener noreferrer" className="w-full inline-flex items-center p-6 text-left border-b border-border transition-colors duration-300 hover:bg-card/40">
+              See More on Github <ExternalLink aria-hidden className="inline-block ml-2" size={14} strokeWidth={2} />
+            </Link>
           </div>
 
           <SectionRevealer delay={0.15}>

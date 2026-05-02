@@ -1,41 +1,34 @@
 ---
 experience:
-  - company: "Acme Corp"
-    role: "Senior Frontend Engineer"
-    period: "2023 — Present"
-    location: "Remote"
-    description: |
-      Led the redesign of the core product dashboard, improving performance by 40% and reducing
-      customer support tickets by 25%. Mentored a team of 4 junior developers and established
-      front-end coding standards adopted across the organisation.
-    tags: ["React", "TypeScript", "GraphQL", "Design Systems"]
-
-  - company: "Pixel Studio"
+  - company: "Manithy"
     role: "Frontend Developer"
-    period: "2021 — 2023"
-    location: "Jakarta, ID"
+    period: "Jan 2026 — Present"
+    location: "Rome, Italy (Remote)"
     description: |
-      Built interactive data visualisation tools and marketing micro-sites for clients
-      in fintech and e-commerce. Collaborated closely with designers to maintain
-      pixel-perfect implementation across all browsers and devices.
-    tags: ["Vue.js", "D3.js", "SCSS", "Figma"]
+      built a Banking SaaS/financial simulation platform (Next.js, Supabase, AI forecasting), developed a 3-stage auth app for AI regulatory compliance, set up CI/CD with GitHub Actions (unit + E2E tests), and mentored a frontend intern to production readiness.
 
-  - company: "StartupXYZ"
-    role: "Junior Web Developer"
-    period: "2019 — 2021"
-    location: "Bandung, ID"
+    tags: ["React", "Next.js", "Typescript", "Supabase", "Zustand", "Tanstack Query", "Tailwind"]
+  - company: "PT. Manjo Teknologi Indonesia"
+    role: "Fullstack Developer"
+    period: "Nov 2025 — Present"
+    location: "Jakarta, Indonesia"
     description: |
-      Developed and maintained a SaaS platform's customer-facing portal.
-      Improved time-to-interactive by 60% through code splitting and lazy loading.
-      Worked in an Agile environment with two-week sprints.
-    tags: ["JavaScript", "React", "REST APIs", "AWS"]
+       improved financial web apps (boosting client satisfaction by 40%), wrote payment gateway docs for client self-onboarding, and led development of an all-in-one financial platform with POS, virtual accounts, and BI reporting.
+    tags: ["Sveltekit", "TypeScript", "REST API", "Golang", "Fiber", "Postman", "Tailwind"]
 
-  - company: "Freelance"
-    role: "Web Developer"
-    period: "2018 — 2019"
+  - company: "Purple Box"
+    role: "Frontend Developer"
+    period: "Apr 2025 — Dec 2025"
+    location: "Rome, Italy (Remote)"
+    description: |
+      built a RAG chatbot UI with doc upload/file management (drove 80% uplift in client acquisition interest), developed an AI-powered CRM with real-time sync (20% ops efficiency gain), and shipped production apps as part of a 20+ person cross-functional team.
+    tags: ["Typescript", "React", "Next.js", "Supabase", "Tailwind"]
+
+  - company: "PT. Telkom Indonesia"
+    role: "Software Quality Assurance"
+    period: "Aug 2024 — Jan 2025"
     location: "Remote"
     description: |
-      Designed and developed websites for local businesses — from landing pages
-      to small e-commerce stores. Managed client relationships and project timelines independently.
-    tags: ["HTML/CSS", "WordPress", "PHP", "SEO"]
+      facilitated 10+ daily standups and kept releases unblocked, built Mocha.js automated test suites covering 5+ APIs (80% QA efficiency gain), and designed/executed 50+ test cases across 2 squads to uphold quality and compliance standards.
+    tags: ["Mocha.js", "Excel", "Scrum", "Jira", "Figma"]
 ---

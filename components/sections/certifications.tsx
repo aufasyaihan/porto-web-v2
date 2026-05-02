@@ -1,6 +1,7 @@
 import Image from "next/image";
 import SectionRevealer from "../section-revealer";
 import { CertEntry } from "@/types/certificate";
+import { Award } from "lucide-react";
 
 export default function Certifications({ data }: { data: CertEntry[] }) {
   return (
@@ -54,7 +55,7 @@ function CertCard({ cert }: { cert: CertEntry }) {
                 sizes="40px"
               />
             ) : (
-              <span aria-hidden>🏅</span>
+              <span aria-hidden><Award /></span>
             )}
           </div>
 
