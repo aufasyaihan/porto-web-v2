@@ -1,13 +1,13 @@
-"use client";
+'use client'
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 
 interface SectionRevealerProps {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-  style?: React.CSSProperties;
+  children: React.ReactNode
+  delay?: number
+  className?: string
+  style?: React.CSSProperties
 }
 
 export default function SectionRevealer({
@@ -16,8 +16,8 @@ export default function SectionRevealer({
   className,
   style,
 }: SectionRevealerProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "0px 0px -80px 0px" });
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '0px 0px -80px 0px' })
 
   return (
     <motion.div
@@ -34,5 +34,5 @@ export default function SectionRevealer({
     >
       {children}
     </motion.div>
-  );
+  )
 }

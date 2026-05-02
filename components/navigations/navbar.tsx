@@ -1,8 +1,8 @@
-"use client";
+'use client'
 
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
+import { useEffect, useRef, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import Link from 'next/link'
 import {
   Award,
   BadgeCheck,
@@ -12,90 +12,91 @@ import {
   Mail,
   MoreHorizontal,
   UserRound,
-} from "lucide-react";
-import { PORTOFOLIO } from "@/lib/constant";
+} from 'lucide-react'
+import { PORTOFOLIO } from '@/lib/constant'
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Certifications", href: "#certifications" },
-  { label: "Awards", href: "#awards" },
-  { label: "Education", href: "#education" },
-  { label: "Contact", href: "#contact" },
-];
+  { label: 'About', href: '#about' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Certifications', href: '#certifications' },
+  { label: 'Awards', href: '#awards' },
+  { label: 'Education', href: '#education' },
+  { label: 'Contact', href: '#contact' },
+]
 
 const mobilePrimaryLinks = [
-  { label: "About", href: "#about", icon: UserRound },
-  { label: "Work", href: "#experience", icon: BriefcaseBusiness },
-  { label: "Projects", href: "#projects", icon: FolderKanban },
-  { label: "Contact", href: "#contact", icon: Mail },
-];
+  { label: 'About', href: '#about', icon: UserRound },
+  { label: 'Work', href: '#experience', icon: BriefcaseBusiness },
+  { label: 'Projects', href: '#projects', icon: FolderKanban },
+  { label: 'Contact', href: '#contact', icon: Mail },
+]
 
 const mobileMoreLinks = [
-  { label: "Certifications", href: "#certifications", icon: BadgeCheck },
-  { label: "Awards", href: "#awards", icon: Award },
-  { label: "Education", href: "#education", icon: GraduationCap },
-];
+  { label: 'Certifications', href: '#certifications', icon: BadgeCheck },
+  { label: 'Awards', href: '#awards', icon: Award },
+  { label: 'Education', href: '#education', icon: GraduationCap },
+]
 
-const initials = PORTOFOLIO.NAME.split(" ").map((n) => n[0])
-  .join("")
-  .toUpperCase();
+const initials = PORTOFOLIO.NAME.split(' ')
+  .map((n) => n[0])
+  .join('')
+  .toUpperCase()
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [active, setActive] = useState("");
-  const ticking = useRef(false);
+  const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [active, setActive] = useState('')
+  const ticking = useRef(false)
 
   useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout;
+    let scrollTimeout: NodeJS.Timeout
 
     const onScroll = () => {
       if (!ticking.current) {
         requestAnimationFrame(() => {
-          setScrolled(window.scrollY > 40);
-          ticking.current = false;
-        });
-        ticking.current = true;
+          setScrolled(window.scrollY > 40)
+          ticking.current = false
+        })
+        ticking.current = true
       }
 
-      if (!document.body.classList.contains("is-scrolling")) {
-        document.body.classList.add("is-scrolling");
+      if (!document.body.classList.contains('is-scrolling')) {
+        document.body.classList.add('is-scrolling')
       }
-      clearTimeout(scrollTimeout);
+      clearTimeout(scrollTimeout)
       scrollTimeout = setTimeout(() => {
-        document.body.classList.remove("is-scrolling");
-      }, 150);
-    };
+        document.body.classList.remove('is-scrolling')
+      }, 150)
+    }
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      clearTimeout(scrollTimeout);
-    };
-  }, []);
+      window.removeEventListener('scroll', onScroll)
+      clearTimeout(scrollTimeout)
+    }
+  }, [])
 
   useEffect(() => {
-    const sections = navLinks.map((l) =>
-      document.querySelector(l.href) as HTMLElement | null
-    );
+    const sections = navLinks.map(
+      (l) => document.querySelector(l.href) as HTMLElement | null
+    )
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
-          if (e.isIntersecting) setActive(`#${e.target.id}`);
-        });
+          if (e.isIntersecting) setActive(`#${e.target.id}`)
+        })
       },
-      { rootMargin: "-40% 0px -55% 0px" }
-    );
-    sections.forEach((s) => s && observer.observe(s));
-    return () => observer.disconnect();
-  }, []);
+      { rootMargin: '-40% 0px -55% 0px' }
+    )
+    sections.forEach((s) => s && observer.observe(s))
+    return () => observer.disconnect()
+  }, [])
 
-  const closeMenu = () => setMenuOpen(false);
-  const moreActive = mobileMoreLinks.some((link) => active === link.href);
+  const closeMenu = () => setMenuOpen(false)
+  const moreActive = mobileMoreLinks.some((link) => active === link.href)
 
   return (
     <>
@@ -106,8 +107,8 @@ export default function Navbar() {
           aria-label="Primary"
           className={`pointer-events-auto mx-auto flex items-center justify-between transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             scrolled
-              ? "mt-4 h-14 w-[min(880px,calc(100vw-2rem))] gap-8 rounded-full border border-border bg-bg/70 px-5 shadow-[0_18px_60px_rgba(0,0,0,0.24)] backdrop-blur-sm"
-              : "mt-0 h-16 w-[min(1200px,calc(100vw-4rem))] gap-10 rounded-none border-b border-transparent bg-transparent px-8 shadow-none backdrop-blur-none"
+              ? 'mt-4 h-14 w-[min(880px,calc(100vw-2rem))] gap-8 rounded-full border border-border bg-bg/70 px-5 shadow-[0_18px_60px_rgba(0,0,0,0.24)] backdrop-blur-sm'
+              : 'mt-0 h-16 w-[min(1200px,calc(100vw-4rem))] gap-10 rounded-none border-b border-transparent bg-transparent px-8 shadow-none backdrop-blur-none'
           }`}
         >
           <Link href="#hero" className="flex items-center">
@@ -163,8 +164,8 @@ export default function Navbar() {
                     onClick={closeMenu}
                     className={`flex h-12 items-center gap-3 px-3 font-mono text-sm transition-colors duration-200 ${
                       active === href
-                        ? "bg-text text-bg"
-                        : "text-text-2 hover:bg-card hover:text-text"
+                        ? 'bg-text text-bg'
+                        : 'text-text-2 hover:bg-card hover:text-text'
                     }`}
                   >
                     <Icon aria-hidden size={18} strokeWidth={2} />
@@ -201,8 +202,8 @@ export default function Navbar() {
           onClick={() => setMenuOpen((v) => !v)}
           className={`flex h-12 min-w-0 flex-1 flex-col items-center justify-center gap-1 border transition-colors duration-200 ${
             menuOpen || moreActive
-              ? "border-text bg-text text-bg"
-              : "border-transparent text-text-2 hover:border-border-2 hover:text-text"
+              ? 'border-text bg-text text-bg'
+              : 'border-transparent text-text-2 hover:border-border-2 hover:text-text'
           }`}
         >
           <MoreHorizontal aria-hidden size={21} strokeWidth={2} />
@@ -210,7 +211,7 @@ export default function Navbar() {
         </button>
       </nav>
     </>
-  );
+  )
 }
 
 function NavLink({
@@ -219,18 +220,18 @@ function NavLink({
   onClick,
   children,
 }: {
-  href: string;
-  isActive: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
+  href: string
+  isActive: boolean
+  onClick: () => void
+  children: React.ReactNode
 }) {
   return (
     <Link href={href} onClick={onClick} className="relative inline-block">
       <motion.span
         className={`font-mono text-sm font-normal tracking-[0.05em] transition-colors duration-200 ${
-          isActive ? "text-text" : "text-text-2"
+          isActive ? 'text-text' : 'text-text-2'
         }`}
-        whileHover={{ color: "var(--color-text)" }}
+        whileHover={{ color: 'var(--color-text)' }}
       >
         {children}
       </motion.span>
@@ -241,7 +242,7 @@ function NavLink({
         />
       )}
     </Link>
-  );
+  )
 }
 
 function MobileNavLink({
@@ -251,11 +252,11 @@ function MobileNavLink({
   onClick,
   children,
 }: {
-  href: string;
-  label: string;
-  active: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
+  href: string
+  label: string
+  active: boolean
+  onClick: () => void
+  children: React.ReactNode
 }) {
   return (
     <Link
@@ -264,8 +265,8 @@ function MobileNavLink({
       onClick={onClick}
       className={`flex h-12 min-w-0 flex-1 flex-col items-center justify-center gap-1 border transition-colors duration-200 ${
         active
-          ? "border-text bg-text text-bg"
-          : "border-transparent text-text-2 hover:border-border-2 hover:text-text"
+          ? 'border-text bg-text text-bg'
+          : 'border-transparent text-text-2 hover:border-border-2 hover:text-text'
       }`}
     >
       {children}
@@ -273,5 +274,5 @@ function MobileNavLink({
         {label}
       </span>
     </Link>
-  );
+  )
 }

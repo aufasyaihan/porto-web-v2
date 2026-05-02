@@ -1,6 +1,6 @@
-import Image from "next/image";
-import SectionRevealer from "../section-revealer";
-import { AwardEntry } from "@/types/award";
+import Image from 'next/image'
+import SectionRevealer from '../section-revealer'
+import { AwardEntry } from '@/types/award'
 
 export default function Awards({ data }: { data: AwardEntry[] }) {
   return (
@@ -21,7 +21,7 @@ export default function Awards({ data }: { data: AwardEntry[] }) {
               >
                 <div>
                   <span className="font-mono text-4xl font-light leading-none tracking-[-0.04em] text-text-3 md:text-5xl">
-                    {String(i + 1).padStart(2, "0")}
+                    {String(i + 1).padStart(2, '0')}
                   </span>
                 </div>
 
@@ -63,5 +63,5 @@ export default function Awards({ data }: { data: AwardEntry[] }) {
         </div>
       </div>
     </section>
-  );
+  )
 }

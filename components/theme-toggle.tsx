@@ -1,56 +1,56 @@
-"use client";
+'use client'
 
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { Monitor, Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
+import { useEffect, useRef, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { Monitor, Moon, Sun } from 'lucide-react'
+import { useTheme } from 'next-themes'
 
 const modes = [
-  { value: "light", icon: Sun },
-  { value: "dark", icon: Moon },
-  { value: "system", icon: Monitor },
-] as const;
+  { value: 'light', icon: Sun },
+  { value: 'dark', icon: Moon },
+  { value: 'system', icon: Monitor },
+] as const
 
 export default function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  const [open, setOpen] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  const [open, setOpen] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const frame = requestAnimationFrame(() => setMounted(true));
-    return () => cancelAnimationFrame(frame);
-  }, []);
+    const frame = requestAnimationFrame(() => setMounted(true))
+    return () => cancelAnimationFrame(frame)
+  }, [])
 
   useEffect(() => {
-    if (!open) return;
+    if (!open) return
 
     const onPointerDown = (event: PointerEvent) => {
       if (
         containerRef.current &&
         !containerRef.current.contains(event.target as Node)
       ) {
-        setOpen(false);
+        setOpen(false)
       }
-    };
+    }
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
-    };
+      if (event.key === 'Escape') setOpen(false)
+    }
 
-    document.addEventListener("pointerdown", onPointerDown);
-    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener('pointerdown', onPointerDown)
+    document.addEventListener('keydown', onKeyDown)
 
     return () => {
-      document.removeEventListener("pointerdown", onPointerDown);
-      document.removeEventListener("keydown", onKeyDown);
-    };
-  }, [open]);
+      document.removeEventListener('pointerdown', onPointerDown)
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [open])
 
-  const currentTheme = mounted ? theme ?? "system" : "system";
+  const currentTheme = mounted ? (theme ?? 'system') : 'system'
   const currentMode =
-    modes.find((mode) => mode.value === currentTheme) ?? modes[2];
-  const CurrentIcon = currentMode.icon;
+    modes.find((mode) => mode.value === currentTheme) ?? modes[2]
+  const CurrentIcon = currentMode.icon
 
   return (
     <div
@@ -83,7 +83,7 @@ export default function ThemeToggle() {
             aria-label="Theme options"
           >
             {modes.map(({ value, icon: Icon }) => {
-              const active = currentTheme === value;
+              const active = currentTheme === value
 
               return (
                 <button
@@ -93,22 +93,22 @@ export default function ThemeToggle() {
                   aria-checked={active}
                   data-cursor="hover"
                   onClick={() => {
-                    setTheme(value);
-                    setOpen(false);
+                    setTheme(value)
+                    setOpen(false)
                   }}
                   className={`flex h-10 w-full items-center gap-3 rounded-xl px-3 text-left font-mono text-xs transition-colors duration-200 ${
                     active
-                      ? "bg-text text-bg"
-                      : "text-text-2 hover:bg-card hover:text-text"
+                      ? 'bg-text text-bg'
+                      : 'text-text-2 hover:bg-card hover:text-text'
                   }`}
                 >
                   <Icon aria-hidden size={16} strokeWidth={2} />
                 </button>
-              );
+              )
             })}
           </motion.div>
         )}
       </AnimatePresence>
     </div>
-  );
+  )
 }

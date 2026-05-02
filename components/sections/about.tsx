@@ -1,29 +1,26 @@
-"use client";
+'use client'
 
-import { useRef, useEffect, useState } from "react";
-import Image from "next/image";
-import { motion, useInView } from "framer-motion";
-import SectionRevealer from "../section-revealer";
-import { useTheme } from "next-themes";
-import { cn } from "@/lib/utils";
-import { AboutData } from "@/types/about";
+import { useRef, useEffect, useState } from 'react'
+import Image from 'next/image'
+import { motion, useInView } from 'framer-motion'
+import SectionRevealer from '../section-revealer'
+import { useTheme } from 'next-themes'
+import { cn } from '@/lib/utils'
+import { AboutData } from '@/types/about'
 
 export default function About({ data }: { data: AboutData }) {
-  const statsRef = useRef<HTMLDivElement>(null);
-  const statsInView = useInView(statsRef, { once: true });
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const statsRef = useRef<HTMLDivElement>(null)
+  const statsInView = useInView(statsRef, { once: true })
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const frame = requestAnimationFrame(() => setMounted(true));
-    return () => cancelAnimationFrame(frame);
-  }, []);
+    const frame = requestAnimationFrame(() => setMounted(true))
+    return () => cancelAnimationFrame(frame)
+  }, [])
 
   return (
-    <section
-      id="about"
-      className="py-32 border-t border-border bg-bg"
-    >
+    <section id="about" className="py-32 border-t border-border bg-bg">
       <div className="max-w-[1200px] mx-auto px-8">
         {/* Section label */}
         <SectionRevealer>
@@ -47,17 +44,17 @@ export default function About({ data }: { data: AboutData }) {
                     alt={data.name}
                     fill
                     className={cn(
-                      "object-cover",
-                      mounted && resolvedTheme === "dark" && "grayscale"
+                      'object-cover',
+                      mounted && resolvedTheme === 'dark' && 'grayscale'
                     )}
                     sizes="(max-width: 768px) 100vw, 360px"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-6xl text-text-3 font-bold tracking-[-0.04em]">
                     {data.name
-                      .split(" ")
+                      .split(' ')
                       .map((n) => n[0])
-                      .join("")}
+                      .join('')}
                   </div>
                 )}
 
@@ -76,13 +73,10 @@ export default function About({ data }: { data: AboutData }) {
                 className="grid grid-cols-3 gap-[1px] bg-border mt-[1px] border border-border"
               >
                 {data.stats.map((stat, i) => (
-                  <div
-                    key={stat.label}
-                    className="p-6 bg-card text-center"
-                  >
+                  <div key={stat.label} className="p-6 bg-card text-center">
                     <AnimatedCount
                       value={stat.value}
-                      suffix={stat.suffix ?? ""}
+                      suffix={stat.suffix ?? ''}
                       trigger={statsInView}
                       delay={i * 0.1}
                     />
@@ -127,8 +121,8 @@ export default function About({ data }: { data: AboutData }) {
                       animate={statsInView ? { opacity: 1, scale: 1 } : {}}
                       transition={{ delay: i * 0.04, duration: 0.4 }}
                       whileHover={{
-                        borderColor: "var(--color-text)",
-                        color: "var(--color-text)",
+                        borderColor: 'var(--color-text)',
+                        color: 'var(--color-text)',
                       }}
                       className="px-3.5 py-1.5 text-[0.75rem] font-mono text-text-2 border border-border-2 tracking-[0.05em] cursor-default transition-colors duration-200"
                     >
@@ -147,7 +141,10 @@ export default function About({ data }: { data: AboutData }) {
                   <SocialLink href={data.socials.linkedin} label="LinkedIn" />
                 )}
                 {data.socials.email && (
-                  <SocialLink href={`mailto:${data.socials.email}`} label="Email" />
+                  <SocialLink
+                    href={`mailto:${data.socials.email}`}
+                    label="Email"
+                  />
                 )}
               </div>
             </div>
@@ -155,7 +152,7 @@ export default function About({ data }: { data: AboutData }) {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
 function AnimatedCount({
@@ -164,33 +161,33 @@ function AnimatedCount({
   trigger,
   delay,
 }: {
-  value: number;
-  suffix: string;
-  trigger: boolean;
-  delay: number;
+  value: number
+  suffix: string
+  trigger: boolean
+  delay: number
 }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const hasRun = useRef(false);
+  const ref = useRef<HTMLSpanElement>(null)
+  const hasRun = useRef(false)
 
   useEffect(() => {
     if (trigger && !hasRun.current && ref.current) {
-      hasRun.current = true;
-      let start = 0;
-      const duration = 1200;
-      const startTime = performance.now();
+      hasRun.current = true
+      let start = 0
+      const duration = 1200
+      const startTime = performance.now()
 
       const step = (now: number) => {
-        const progress = Math.min((now - startTime) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        start = Math.round(eased * value);
-        if (ref.current) ref.current.textContent = `${start}${suffix}`;
-        if (progress < 1) requestAnimationFrame(step);
-      };
+        const progress = Math.min((now - startTime) / duration, 1)
+        const eased = 1 - Math.pow(1 - progress, 3)
+        start = Math.round(eased * value)
+        if (ref.current) ref.current.textContent = `${start}${suffix}`
+        if (progress < 1) requestAnimationFrame(step)
+      }
 
-      const timer = setTimeout(() => requestAnimationFrame(step), delay * 1000);
-      return () => clearTimeout(timer);
+      const timer = setTimeout(() => requestAnimationFrame(step), delay * 1000)
+      return () => clearTimeout(timer)
     }
-  }, [trigger, value, suffix, delay]);
+  }, [trigger, value, suffix, delay])
 
   return (
     <span
@@ -199,7 +196,7 @@ function AnimatedCount({
     >
       0{suffix}
     </span>
-  );
+  )
 }
 
 function SocialLink({ href, label }: { href: string; label: string }) {
@@ -214,5 +211,5 @@ function SocialLink({ href, label }: { href: string; label: string }) {
     >
       {label} ↗
     </motion.a>
-  );
+  )
 }

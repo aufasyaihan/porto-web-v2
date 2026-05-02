@@ -1,12 +1,12 @@
-import { PORTOFOLIO } from "@/lib/constant";
-import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
+import { PORTOFOLIO } from '@/lib/constant'
+import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa'
 
 export default function Footer({ year }: { year: number }) {
   const socials = [
-    { label: "GitHub", icon: FaGithub, href: PORTOFOLIO.URL.GITHUB },
-    { label: "LinkedIn", icon: FaLinkedin, href: PORTOFOLIO.URL.LINKEDIN },
-    { label: "Email", icon: FaEnvelope, href: `mailto:${PORTOFOLIO.EMAIL}` },
-  ];
+    { label: 'GitHub', icon: FaGithub, href: PORTOFOLIO.URL.GITHUB },
+    { label: 'LinkedIn', icon: FaLinkedin, href: PORTOFOLIO.URL.LINKEDIN },
+    { label: 'Email', icon: FaEnvelope, href: `mailto:${PORTOFOLIO.EMAIL}` },
+  ]
 
   return (
     <footer className="border-t border-border py-8 bg-bg">
@@ -31,5 +31,5 @@ export default function Footer({ year }: { year: number }) {
         </div>
       </div>
     </footer>
-  );
+  )
 }

@@ -1,29 +1,31 @@
-"use client";
+'use client'
 
-import { useRef, useState } from "react";
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
-import SectionRevealer from "../section-revealer";
-import { ExperienceEntry } from "@/types/experiance";
+import { useRef, useState } from 'react'
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useMotionValueEvent,
+} from 'framer-motion'
+import SectionRevealer from '../section-revealer'
+import { ExperienceEntry } from '@/types/experiance'
 
 export default function Experience({ data }: { data: ExperienceEntry[] }) {
-  const [active, setActive] = useState<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState<number | null>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 80%", "end 20%"],
-  });
+    offset: ['start 80%', 'end 20%'],
+  })
 
-  const [lineHeight, setLineHeight] = useState(0);
-  useMotionValueEvent(scrollYProgress, "change", (v) => {
-    setLineHeight(v * 100);
-  });
+  const [lineHeight, setLineHeight] = useState(0)
+  useMotionValueEvent(scrollYProgress, 'change', (v) => {
+    setLineHeight(v * 100)
+  })
 
   return (
-    <section
-      id="experience"
-      className="py-32 border-t border-border bg-bg"
-    >
+    <section id="experience" className="py-32 border-t border-border bg-bg">
       <div className="max-w-[1200px] mx-auto px-8">
         <SectionRevealer>
           <p className="font-mono text-[0.7rem] tracking-[0.2em] uppercase text-text-3 mb-16">
@@ -58,8 +60,8 @@ export default function Experience({ data }: { data: ExperienceEntry[] }) {
                     <div
                       className={`absolute left-0 w-[15px] h-[15px] rounded-full border transition-colors duration-300 mt-[2px] ${
                         active === i
-                          ? "bg-text border-text"
-                          : "bg-bg border-border-2"
+                          ? 'bg-text border-text'
+                          : 'bg-bg border-border-2'
                       }`}
                     />
                     <motion.div whileHover={{ x: 4 }}>
@@ -68,7 +70,7 @@ export default function Experience({ data }: { data: ExperienceEntry[] }) {
                       </p>
                       <p
                         className={`text-[0.95rem] font-medium transition-colors duration-200 ${
-                          active === i ? "text-text" : "text-text-2"
+                          active === i ? 'text-text' : 'text-text-2'
                         }`}
                       >
                         {entry.company}
@@ -91,8 +93,8 @@ export default function Experience({ data }: { data: ExperienceEntry[] }) {
                   onClick={() => setActive(active === i ? null : i)}
                   className={`p-8 cursor-none transition-colors duration-300 border hover:border-border-2 ${
                     active === i
-                      ? "border-border-2 bg-card"
-                      : "border-border bg-transparent"
+                      ? 'border-border-2 bg-card'
+                      : 'border-border bg-transparent'
                   }`}
                 >
                   {/* Header */}
@@ -124,7 +126,7 @@ export default function Experience({ data }: { data: ExperienceEntry[] }) {
                     {active === i && (
                       <motion.div
                         initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
+                        animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                         className="overflow-hidden"
@@ -155,5 +157,5 @@ export default function Experience({ data }: { data: ExperienceEntry[] }) {
         </div>
       </div>
     </section>
-  );
+  )
 }

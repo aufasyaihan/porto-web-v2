@@ -1,18 +1,18 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
-import { ProjectEntry } from "@/types/project";
-import SectionRevealer from "../section-revealer";
-import { FaGithub } from "react-icons/fa";
-import { PORTOFOLIO } from "@/lib/constant";
-import Link from "next/link";
+import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ExternalLink } from 'lucide-react'
+import { ProjectEntry } from '@/types/project'
+import SectionRevealer from '../section-revealer'
+import { FaGithub } from 'react-icons/fa'
+import { PORTOFOLIO } from '@/lib/constant'
+import Link from 'next/link'
 
 export default function Projects({ data }: { data: ProjectEntry[] }) {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(0)
 
-  if (data.length === 0) return null;
+  if (data.length === 0) return null
 
   return (
     <section id="projects" className="py-32 border-t border-border bg-surface">
@@ -37,7 +37,7 @@ export default function Projects({ data }: { data: ProjectEntry[] }) {
                   onClick={() => setActive(i)}
                   data-cursor="hover"
                   className={`w-full p-6 text-left border-b border-border transition-colors duration-300 ${
-                    active === i ? "bg-card" : "bg-transparent hover:bg-card/40"
+                    active === i ? 'bg-card' : 'bg-transparent hover:bg-card/40'
                   }`}
                 >
                   <span className="font-mono text-[0.68rem] text-text-3 tracking-[0.12em] uppercase">
@@ -45,7 +45,7 @@ export default function Projects({ data }: { data: ProjectEntry[] }) {
                   </span>
                   <span
                     className={`block mt-3 text-[1.25rem] font-semibold tracking-[-0.02em] transition-colors duration-200 ${
-                      active === i ? "text-text" : "text-text-2"
+                      active === i ? 'text-text' : 'text-text-2'
                     }`}
                   >
                     {project.title}
@@ -53,8 +53,19 @@ export default function Projects({ data }: { data: ProjectEntry[] }) {
                 </button>
               </SectionRevealer>
             ))}
-            <Link href={PORTOFOLIO.URL.GITHUB} target="_blank" rel="noopener noreferrer" className="w-full inline-flex items-center p-6 text-left border-b border-border transition-colors duration-300 hover:bg-card/40">
-              See More on Github <ExternalLink aria-hidden className="inline-block ml-2" size={14} strokeWidth={2} />
+            <Link
+              href={PORTOFOLIO.URL.GITHUB}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full inline-flex items-center p-6 text-left border-b border-border transition-colors duration-300 hover:bg-card/40"
+            >
+              See More on Github{' '}
+              <ExternalLink
+                aria-hidden
+                className="inline-block ml-2"
+                size={14}
+                strokeWidth={2}
+              />
             </Link>
           </div>
 
@@ -100,7 +111,11 @@ export default function Projects({ data }: { data: ProjectEntry[] }) {
 
                   <div className="mt-auto pt-12 flex flex-wrap gap-4">
                     {data[active].liveUrl && (
-                      <ProjectLink href={data[active].liveUrl} label="Live" icon="live" />
+                      <ProjectLink
+                        href={data[active].liveUrl}
+                        label="Live"
+                        icon="live"
+                      />
                     )}
                     {data[active].githubUrl && (
                       <ProjectLink
@@ -117,7 +132,7 @@ export default function Projects({ data }: { data: ProjectEntry[] }) {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
 function ProjectLink({
@@ -125,11 +140,11 @@ function ProjectLink({
   label,
   icon,
 }: {
-  href: string;
-  label: string;
-  icon: "live" | "github";
+  href: string
+  label: string
+  icon: 'live' | 'github'
 }) {
-  const Icon = icon === "github" ? FaGithub : ExternalLink;
+  const Icon = icon === 'github' ? FaGithub : ExternalLink
 
   return (
     <motion.a
@@ -143,5 +158,5 @@ function ProjectLink({
       <Icon aria-hidden size={14} strokeWidth={2} />
       {label}
     </motion.a>
-  );
+  )
 }

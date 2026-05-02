@@ -1,65 +1,65 @@
-"use client";
+'use client'
 
-import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { PORTOFOLIO } from "@/lib/constant";
-import { Mouse } from "lucide-react";
+import { useEffect, useRef, useState } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { PORTOFOLIO } from '@/lib/constant'
+import { Mouse } from 'lucide-react'
 
-const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%";
+const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%'
 
 function useScramble(text: string, trigger: boolean) {
-  const [display, setDisplay] = useState(text);
-  const frame = useRef(0);
-  const raf = useRef<number>(0);
+  const [display, setDisplay] = useState(text)
+  const frame = useRef(0)
+  const raf = useRef<number>(0)
 
   useEffect(() => {
-    if (!trigger) return;
-    let iteration = 0;
-    const maxIter = text.length * 4;
+    if (!trigger) return
+    let iteration = 0
+    const maxIter = text.length * 4
 
     const animate = () => {
       setDisplay(
         text
-          .split("")
+          .split('')
           .map((char, i) => {
-            if (char === " ") return " ";
-            if (i < iteration / 4) return text[i];
-            return CHARS[Math.floor(Math.random() * CHARS.length)];
+            if (char === ' ') return ' '
+            if (i < iteration / 4) return text[i]
+            return CHARS[Math.floor(Math.random() * CHARS.length)]
           })
-          .join("")
-      );
-      iteration++;
+          .join('')
+      )
+      iteration++
       if (iteration < maxIter) {
-        raf.current = requestAnimationFrame(animate);
+        raf.current = requestAnimationFrame(animate)
       } else {
-        setDisplay(text);
+        setDisplay(text)
       }
-      frame.current = iteration;
-    };
-    raf.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(raf.current);
-  }, [text, trigger]);
+      frame.current = iteration
+    }
+    raf.current = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(raf.current)
+  }, [text, trigger])
 
-  return display;
+  return display
 }
 
 export default function Hero({ name, year }: { name: string; year: number }) {
-  const [started, setStarted] = useState(false);
-  const containerRef = useRef<HTMLElement>(null);
+  const [started, setStarted] = useState(false)
+  const containerRef = useRef<HTMLElement>(null)
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+    offset: ['start start', 'end start'],
+  })
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
 
   useEffect(() => {
-    const t = setTimeout(() => setStarted(true), 200);
-    return () => clearTimeout(t);
-  }, []);
+    const t = setTimeout(() => setStarted(true), 200)
+    return () => clearTimeout(t)
+  }, [])
 
-  const scrambled = useScramble(name.toUpperCase(), started);
+  const scrambled = useScramble(name.toUpperCase(), started)
 
   return (
     <section
@@ -102,8 +102,8 @@ export default function Hero({ name, year }: { name: string; year: number }) {
           transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-[clamp(1rem,2.5vw,1.3rem)] text-text-2 font-light tracking-[0.02em] mb-12"
         >
-          {PORTOFOLIO.ROLE} — Building at the intersection of{" "}
-          <em className="text-text not-italic">design</em> &amp;{" "}
+          {PORTOFOLIO.ROLE} — Building at the intersection of{' '}
+          <em className="text-text not-italic">design</em> &amp;{' '}
           <em className="text-text not-italic">engineering</em>
         </motion.p>
 
@@ -143,13 +143,13 @@ export default function Hero({ name, year }: { name: string; year: number }) {
         </span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
           className="w-[1px] h-10 bg-gradient-to-b from-text-2 to-transparent"
         />
         <Mouse />
       </motion.div>
     </section>
-  );
+  )
 }
 
 function DotGrid() {
@@ -159,13 +159,13 @@ function DotGrid() {
       className="absolute inset-0 z-0"
       style={{
         backgroundImage:
-          "radial-gradient(circle, color-mix(in srgb, var(--color-text) 9%, transparent) 1px, transparent 1px)",
-        backgroundSize: "40px 40px",
+          'radial-gradient(circle, color-mix(in srgb, var(--color-text) 9%, transparent) 1px, transparent 1px)',
+        backgroundSize: '40px 40px',
         maskImage:
-          "radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)",
+          'radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)',
         WebkitMaskImage:
-          "radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)",
+          'radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)',
       }}
     />
-  );
+  )
 }
