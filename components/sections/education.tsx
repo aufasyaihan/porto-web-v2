@@ -49,6 +49,7 @@ export default function Education({ data }: { data: EducationEntry[] }) {
                           src={edu.logo}
                           alt={edu.institution}
                           fill
+                          unoptimized // since it's a local image, no need for optimization
                           className={cn(
                             'object-cover',
                             mounted && resolvedTheme === 'dark' && 'grayscale'

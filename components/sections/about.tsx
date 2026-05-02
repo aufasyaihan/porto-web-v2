@@ -43,6 +43,7 @@ export default function About({ data }: { data: AboutData }) {
                     src={data.photo}
                     alt={data.name}
                     fill
+                    unoptimized // since it's a local image, no need for optimization
                     className={cn(
                       'object-cover',
                       mounted && resolvedTheme === 'dark' && 'grayscale'
