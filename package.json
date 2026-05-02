@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "bun --bun next dev",
+    "build": "bun --bun next build",
+    "start": "bun --bun next start",
+    "format": "bun --bun prettier --write .",
+    "lint": "eslint",
+    "prepare": "husky"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -22,7 +24,8 @@
     "react-dom": "19.2.4",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
-    "tailwind-merge": "^3.5.0"
+    "tailwind-merge": "^3.5.0",
+    "zod": "^4.4.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -31,6 +34,9 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
@@ -41,5 +47,13 @@
   "trustedDependencies": [
     "sharp",
     "unrs-resolver"
-  ]
+  ],
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ],
+    "*.{json,css,md, js,jsx,ts,tsx}": [
+      "prettier --write"
+    ]
+  }
 }
