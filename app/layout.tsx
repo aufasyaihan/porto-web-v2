@@ -6,6 +6,7 @@ import Navbar from '@/components/navigations/navbar'
 import ThemeToggle from '@/components/theme-toggle'
 import ThemeProvider from '@/providers/theme-provider'
 import { PORTOFOLIO } from '@/lib/constant'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const title = `${PORTOFOLIO.NAME} - ${PORTOFOLIO.ROLE}`
 const description = `Portfolio of ${PORTOFOLIO.NAME}, an Indonesia-based ${PORTOFOLIO.ROLE} building fast, accessible, and polished web experiences with React, Next.js, and TypeScript.`
@@ -100,6 +101,7 @@ export default function RootLayout({
           <ThemeToggle />
           {children}
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   )
