@@ -8,6 +8,16 @@ bio: |
     Focused on building products that are fast, accessible, and genuinely useful.
     Currently open to new opportunities.
 photo: "/images/aufa.jpeg"
+stats:
+    - value: 6
+      label: "Years Exp."
+      suffix: "+"
+    - value: 40
+      label: "Projects Shipped"
+      suffix: "+"
+    - value: 6
+      label: "Technologies"
+      suffix: ""
 skills:
     - TypeScript
     - React / Next.js

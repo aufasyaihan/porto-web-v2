@@ -166,3 +166,8 @@ body::after {
 body.is-scrolling {
   pointer-events: none !important;
 }
+
+/* Ensure scroll libraries can compute offsets correctly */
+#__next {
+  position: relative;
+}

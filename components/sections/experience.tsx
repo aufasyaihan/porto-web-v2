@@ -2,8 +2,8 @@
 
 import { useRef, useState } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
-import type { ExperienceEntry } from "@/lib/content";
 import SectionRevealer from "../section-revealer";
+import { ExperienceEntry } from "@/types/experiance";
 
 export default function Experience({ data }: { data: ExperienceEntry[] }) {
   const [active, setActive] = useState<number | null>(null);

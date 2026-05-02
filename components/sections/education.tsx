@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import type { EducationEntry } from "@/lib/content";
 import SectionRevealer from "../section-revealer";
+import { EducationEntry } from "@/types/education";
 
 export default function Education({ data }: { data: EducationEntry[] }) {
   const [open, setOpen] = useState<number | null>(null);

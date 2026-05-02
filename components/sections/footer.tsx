@@ -1,22 +1,6 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { PORTOFOLIO } from "@/lib/constant";
 
-export default function Footer() {
-  const [year, setYear] = useState(2025);
-  useEffect(() => {
-    const yearId = setTimeout(() => {
-      const currentYear = new Date().getFullYear();
-      setYear(currentYear);
-      if (currentYear === new Date().getFullYear()) {
-        clearTimeout(yearId);
-      }
-    }, 500);
-    return () => clearTimeout(yearId);
-  }, []);
-
+export default function Footer({ year }: { year: number }) {
   const socials = [
     { label: "GitHub", href: PORTOFOLIO.URL.GITHUB },
     { label: "LinkedIn", href: PORTOFOLIO.URL.LINKEDIN },
@@ -32,17 +16,16 @@ export default function Footer() {
 
         <div className="flex gap-8">
           {socials.map((s) => (
-            <motion.a
+            <a
               key={s.label}
               href={s.href}
               target="_blank"
               rel="noopener noreferrer"
               data-cursor="hover"
-              whileHover={{ y: -2 }}
-              className="font-mono text-[0.7rem] tracking-[0.1em] uppercase text-text-3 transition-colors duration-200 hover:text-text"
+              className="font-mono text-[0.7rem] tracking-[0.1em] uppercase text-text-3 transition-all duration-200 hover:-translate-y-0.5 hover:text-text"
             >
               {s.label}
-            </motion.a>
+            </a>
           ))}
         </div>
       </div>

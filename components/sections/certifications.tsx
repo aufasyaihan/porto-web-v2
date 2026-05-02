@@ -1,10 +1,6 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import type { CertEntry } from "@/lib/content";
 import SectionRevealer from "../section-revealer";
+import { CertEntry } from "@/types/certificate";
 
 export default function Certifications({ data }: { data: CertEntry[] }) {
   return (
@@ -26,7 +22,7 @@ export default function Certifications({ data }: { data: CertEntry[] }) {
 
         <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6">
           {data.map((cert, i) => (
-            <SectionRevealer key={i} delay={i * 0.07}>
+            <SectionRevealer key={cert.name} delay={i * 0.07}>
               <CertCard cert={cert} />
             </SectionRevealer>
           ))}
@@ -37,26 +33,18 @@ export default function Certifications({ data }: { data: CertEntry[] }) {
 }
 
 function CertCard({ cert }: { cert: CertEntry }) {
-  const [flipped, setFlipped] = useState(false);
-
   return (
     <div
-      className="h-[220px]"
+      className="group h-[220px]"
       style={{ perspective: "1000px" }}
-      onMouseEnter={() => setFlipped(true)}
-      onMouseLeave={() => setFlipped(false)}
       data-cursor="hover"
     >
-      <motion.div
-        animate={{ rotateY: flipped ? 180 : 0 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full h-full relative"
+      <div
+        className="relative h-full w-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:[transform:rotateY(180deg)] group-focus-within:[transform:rotateY(180deg)]"
         style={{ transformStyle: "preserve-3d" }}
       >
-        {/* Front */}
-        <div className="absolute inset-0 backface-hidden bg-card border border-border p-7 flex flex-col justify-between">
-          {/* Badge */}
-          <div className="w-10 h-10 relative bg-border flex items-center justify-center text-[1.2rem] overflow-hidden">
+        <div className="absolute inset-0 flex flex-col justify-between border border-border bg-card p-7 [backface-visibility:hidden]">
+          <div className="relative flex h-10 w-10 items-center justify-center overflow-hidden bg-border text-[1.2rem]">
             {cert.badge ? (
               <Image
                 src={cert.badge}
@@ -64,41 +52,37 @@ function CertCard({ cert }: { cert: CertEntry }) {
                 fill
                 className="object-contain grayscale"
                 sizes="40px"
-                onError={() => {}}
               />
             ) : (
-              "🏅"
+              <span aria-hidden>🏅</span>
             )}
           </div>
 
           <div>
-            <p className="text-[0.95rem] font-semibold tracking-[-0.01em] mb-1.5 leading-[1.3]">
+            <p className="mb-1.5 text-[0.95rem] font-semibold leading-[1.3] tracking-[-0.01em]">
               {cert.name}
             </p>
-            <p className="font-mono text-[0.72rem] text-text-3 tracking-[0.05em]">
+            <p className="font-mono text-[0.72rem] tracking-[0.05em] text-text-3">
               {cert.issuer}
             </p>
           </div>
         </div>
 
-        {/* Back */}
         <div
-          className="absolute inset-0 backface-hidden bg-text text-bg p-7 flex flex-col justify-between"
+          className="absolute inset-0 flex flex-col justify-between bg-text p-7 text-bg [backface-visibility:hidden]"
           style={{ transform: "rotateY(180deg)" }}
         >
           <div>
-            <p className="font-mono text-[0.6rem] tracking-[0.2em] uppercase text-bg/50 mb-2">
+            <p className="mb-2 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-bg/50">
               Certified
             </p>
-            <p className="text-base font-bold tracking-[-0.02em] leading-[1.2] mb-2">
+            <p className="mb-2 text-base font-bold leading-[1.2] tracking-[-0.02em]">
               {cert.name}
             </p>
-            <p className="text-[0.8rem] text-bg/60">
-              {cert.issuer}
-            </p>
+            <p className="text-[0.8rem] text-bg/60">{cert.issuer}</p>
           </div>
 
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <span className="font-mono text-[0.7rem] text-bg/50">
               {cert.date}
             </span>
@@ -107,15 +91,14 @@ function CertCard({ cert }: { cert: CertEntry }) {
                 href={cert.credentialUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="font-mono text-[0.68rem] tracking-[0.08em] uppercase text-bg border-b border-bg/40 pb-[1px]"
+                className="border-b border-bg/40 pb-[1px] font-mono text-[0.68rem] uppercase tracking-[0.08em] text-bg focus:border-bg focus:outline-none"
               >
                 Verify ↗
               </a>
             )}
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

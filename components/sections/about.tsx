@@ -3,10 +3,10 @@
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
-import type { AboutData } from "@/lib/content";
 import SectionRevealer from "../section-revealer";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
+import { AboutData } from "@/types/about";
 
 export default function About({ data }: { data: AboutData }) {
   const statsRef = useRef<HTMLDivElement>(null);
@@ -18,12 +18,6 @@ export default function About({ data }: { data: AboutData }) {
     const frame = requestAnimationFrame(() => setMounted(true));
     return () => cancelAnimationFrame(frame);
   }, []);
-
-  const stats = [
-    { value: 6, label: "Years Exp.", suffix: "+" },
-    { value: 40, label: "Projects Shipped", suffix: "+" },
-    { value: data.skills.length, label: "Technologies", suffix: "" },
-  ];
 
   return (
     <section
@@ -81,14 +75,14 @@ export default function About({ data }: { data: AboutData }) {
                 ref={statsRef}
                 className="grid grid-cols-3 gap-[1px] bg-border mt-[1px] border border-border"
               >
-                {stats.map((stat, i) => (
+                {data.stats.map((stat, i) => (
                   <div
                     key={stat.label}
                     className="p-6 bg-card text-center"
                   >
                     <AnimatedCount
                       value={stat.value}
-                      suffix={stat.suffix}
+                      suffix={stat.suffix ?? ""}
                       trigger={statsInView}
                       delay={i * 0.1}
                     />

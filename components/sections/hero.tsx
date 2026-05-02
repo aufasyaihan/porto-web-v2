@@ -7,9 +7,7 @@ import { PORTOFOLIO } from "@/lib/constant";
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%";
 
 function useScramble(text: string, trigger: boolean) {
-  const [display, setDisplay] = useState(
-    Array(text.length).fill(" ").join("")
-  );
+  const [display, setDisplay] = useState(text);
   const frame = useRef(0);
   const raf = useRef<number>(0);
 
@@ -44,7 +42,7 @@ function useScramble(text: string, trigger: boolean) {
   return display;
 }
 
-export default function Hero({ name }: { name: string }) {
+export default function Hero({ name, year }: { name: string; year: number }) {
   const [started, setStarted] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
 
@@ -66,6 +64,7 @@ export default function Hero({ name }: { name: string }) {
     <section
       id="hero"
       ref={containerRef}
+      aria-labelledby="hero-title"
       className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-bg"
     >
       {/* Dot grid background */}
@@ -83,11 +82,12 @@ export default function Hero({ name }: { name: string }) {
           transition={{ delay: 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="font-mono text-[0.7rem] tracking-[0.3em] uppercase text-text-3 mb-6"
         >
-          Portfolio — 2025
+          Portfolio — {year}
         </motion.p>
 
         {/* Name — scramble reveal */}
         <h1
+          id="hero-title"
           className="font-sans text-[clamp(3rem,12vw,7rem)] font-bold tracking-[-0.04em] leading-[0.9] text-text whitespace-pre-wrap mb-8 tabular-nums"
           aria-label={name}
         >

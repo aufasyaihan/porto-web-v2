@@ -3,6 +3,12 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import remarkHtml from "remark-html";
+import { AboutData } from "@/types/about";
+import { ExperienceEntry } from "@/types/experiance";
+import { ProjectEntry } from "@/types/project";
+import { CertEntry } from "@/types/certificate";
+import { AwardEntry } from "@/types/award";
+import { EducationEntry } from "@/types/education";
 
 const contentDir = path.join(process.cwd(), "content");
 
@@ -11,40 +17,19 @@ async function parseMarkdown(content: string): Promise<string> {
   return result.toString();
 }
 
-// ─── About ──────────────────────────────────────────────────────────
-export interface AboutData {
-  name: string;
-  title: string;
-  location: string;
-  available: boolean;
-  bio: string;
-  photo: string;
-  skills: string[];
-  socials: {
-    github?: string;
-    linkedin?: string;
-    email?: string;
-    twitter?: string;
-  };
-  bodyHtml: string;
-}
-
 export async function getAbout(): Promise<AboutData> {
   "use cache";
   const raw = fs.readFileSync(path.join(contentDir, "about.md"), "utf-8");
   const { data, content } = matter(raw);
   const bodyHtml = await parseMarkdown(content);
-  return { ...(data as Omit<AboutData, "bodyHtml">), bodyHtml };
-}
+  const about = data as Omit<AboutData, "bodyHtml">;
+  const stats = about.stats ?? [
+    { value: 6, label: "Years Exp.", suffix: "+" },
+    { value: 40, label: "Projects Shipped", suffix: "+" },
+    { value: about.skills.length, label: "Technologies", suffix: "" },
+  ];
 
-// ─── Experience ──────────────────────────────────────────────────────
-export interface ExperienceEntry {
-  company: string;
-  role: string;
-  period: string;
-  location: string;
-  description: string;
-  tags: string[];
+  return { ...about, stats, bodyHtml };
 }
 
 export async function getExperience(): Promise<ExperienceEntry[]> {
@@ -54,31 +39,11 @@ export async function getExperience(): Promise<ExperienceEntry[]> {
   return (data.experience ?? []) as ExperienceEntry[];
 }
 
-// Projects
-export interface ProjectEntry {
-  title: string;
-  type: string;
-  period: string;
-  description: string;
-  tags: string[];
-  githubUrl?: string;
-  liveUrl?: string;
-}
-
 export async function getProjects(): Promise<ProjectEntry[]> {
   "use cache";
   const raw = fs.readFileSync(path.join(contentDir, "projects.md"), "utf-8");
   const { data } = matter(raw);
   return (data.projects ?? []) as ProjectEntry[];
-}
-
-// ─── Certifications ──────────────────────────────────────────────────
-export interface CertEntry {
-  name: string;
-  issuer: string;
-  date: string;
-  badge?: string;
-  credentialUrl?: string;
 }
 
 export async function getCertifications(): Promise<CertEntry[]> {
@@ -91,29 +56,12 @@ export async function getCertifications(): Promise<CertEntry[]> {
   return (data.certifications ?? []) as CertEntry[];
 }
 
-// ─── Awards ─────────────────────────────────────────────────────────
-export interface AwardEntry {
-  title: string;
-  organization: string;
-  year: string;
-  logo?: string;
-  description: string;
-}
 
 export async function getAwards(): Promise<AwardEntry[]> {
   "use cache";
   const raw = fs.readFileSync(path.join(contentDir, "awards.md"), "utf-8");
   const { data } = matter(raw);
   return (data.awards ?? []) as AwardEntry[];
-}
-
-// ─── Education ───────────────────────────────────────────────────────
-export interface EducationEntry {
-  degree: string;
-  institution: string;
-  period: string;
-  logo?: string;
-  description: string;
 }
 
 export async function getEducation(): Promise<EducationEntry[]> {

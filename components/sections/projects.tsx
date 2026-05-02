@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
-import type { ProjectEntry } from "@/lib/content";
+import { ExternalLink } from "lucide-react";
+import { ProjectEntry } from "@/types/project";
 import SectionRevealer from "../section-revealer";
+import { FaGithub } from "react-icons/fa";
 
 export default function Projects({ data }: { data: ProjectEntry[] }) {
   const [active, setActive] = useState(0);
@@ -123,7 +124,7 @@ function ProjectLink({
   label: string;
   icon: "live" | "github";
 }) {
-  const Icon = icon === "github" ? FaGithub : FaExternalLinkAlt;
+  const Icon = icon === "github" ? FaGithub : ExternalLink;
 
   return (
     <motion.a
@@ -134,7 +135,7 @@ function ProjectLink({
       whileHover={{ y: -2 }}
       className="inline-flex items-center gap-2 font-mono text-[0.75rem] tracking-[0.1em] uppercase text-text-2 border border-border px-4 py-2 transition-colors duration-200 hover:text-text hover:border-text"
     >
-      <Icon size={14} />
+      <Icon aria-hidden size={14} strokeWidth={2} />
       {label}
     </motion.a>
   );
