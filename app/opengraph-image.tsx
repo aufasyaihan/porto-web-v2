@@ -40,6 +40,7 @@ export default function OpenGraphImage() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
         <div
           style={{
+            display: 'flex',
             fontSize: 92,
             fontWeight: 800,
             lineHeight: 0.95,
@@ -48,7 +49,7 @@ export default function OpenGraphImage() {
         >
           {PORTOFOLIO.NAME}
         </div>
-        <div style={{ color: '#d4d4d8', fontSize: 40 }}>
+        <div style={{ display: 'flex', color: '#d4d4d8', fontSize: 40 }}>
           {PORTOFOLIO.ROLE} - React, Next.js, TypeScript
         </div>
       </div>

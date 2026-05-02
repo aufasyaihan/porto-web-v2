@@ -18,7 +18,6 @@ async function parseMarkdown(content: string): Promise<string> {
 }
 
 export async function getAbout(): Promise<AboutData> {
-  'use cache'
   const raw = fs.readFileSync(path.join(contentDir, 'about.md'), 'utf-8')
   const { data, content } = matter(raw)
   const bodyHtml = await parseMarkdown(content)
@@ -33,21 +32,18 @@ export async function getAbout(): Promise<AboutData> {
 }
 
 export async function getExperience(): Promise<ExperienceEntry[]> {
-  'use cache'
   const raw = fs.readFileSync(path.join(contentDir, 'experience.md'), 'utf-8')
   const { data } = matter(raw)
   return (data.experience ?? []) as ExperienceEntry[]
 }
 
 export async function getProjects(): Promise<ProjectEntry[]> {
-  'use cache'
   const raw = fs.readFileSync(path.join(contentDir, 'projects.md'), 'utf-8')
   const { data } = matter(raw)
   return (data.projects ?? []) as ProjectEntry[]
 }
 
 export async function getCertifications(): Promise<CertEntry[]> {
-  'use cache'
   const raw = fs.readFileSync(
     path.join(contentDir, 'certifications.md'),
     'utf-8'
@@ -57,14 +53,12 @@ export async function getCertifications(): Promise<CertEntry[]> {
 }
 
 export async function getAwards(): Promise<AwardEntry[]> {
-  'use cache'
   const raw = fs.readFileSync(path.join(contentDir, 'awards.md'), 'utf-8')
   const { data } = matter(raw)
   return (data.awards ?? []) as AwardEntry[]
 }
 
 export async function getEducation(): Promise<EducationEntry[]> {
-  'use cache'
   const raw = fs.readFileSync(path.join(contentDir, 'education.md'), 'utf-8')
   const { data } = matter(raw)
   return (data.education ?? []) as EducationEntry[]
