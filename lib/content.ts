@@ -54,6 +54,24 @@ export async function getExperience(): Promise<ExperienceEntry[]> {
   return (data.experience ?? []) as ExperienceEntry[];
 }
 
+// Projects
+export interface ProjectEntry {
+  title: string;
+  type: string;
+  period: string;
+  description: string;
+  tags: string[];
+  githubUrl?: string;
+  liveUrl?: string;
+}
+
+export async function getProjects(): Promise<ProjectEntry[]> {
+  "use cache";
+  const raw = fs.readFileSync(path.join(contentDir, "projects.md"), "utf-8");
+  const { data } = matter(raw);
+  return (data.projects ?? []) as ProjectEntry[];
+}
+
 // ─── Certifications ──────────────────────────────────────────────────
 export interface CertEntry {
   name: string;

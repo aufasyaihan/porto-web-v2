@@ -17,7 +17,7 @@ export default function Education({ data }: { data: EducationEntry[] }) {
       <div className="max-w-[1200px] mx-auto px-8">
         <SectionRevealer>
           <p className="font-mono text-[0.7rem] tracking-[0.2em] uppercase text-text-3 mb-16">
-            05 — Education
+            06 - Education
           </p>
         </SectionRevealer>
 

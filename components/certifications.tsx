@@ -16,7 +16,7 @@ export default function Certifications({ data }: { data: CertEntry[] }) {
         <SectionRevealer>
           <div className="flex justify-between items-end mb-16 flex-wrap gap-4">
             <p className="font-mono text-[0.7rem] tracking-[0.2em] uppercase text-text-3">
-              03 — Certifications
+              04 - Certifications
             </p>
             <span className="font-mono text-[0.7rem] text-text-3">
               {data.length} credentials

@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
+import { FaEnvelope, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import type { AboutData } from "@/lib/content";
 import SectionRevealer from "./section-revealer";
 
