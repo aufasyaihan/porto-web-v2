@@ -94,7 +94,116 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${dmMono.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+          #ld {
+            position: fixed; inset: 0; z-index: 9999;
+            background: #0a0a0a;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            transition: opacity 0.5s ease;
+          }
+          #ld-num {
+            color: #fff; font-size: 3rem;
+            font-family: monospace; margin-bottom: 2rem;
+          }
+          #ld-track {
+            width: 240px; height: 2px;
+            background: #2a2a2a; border-radius: 999px; overflow: hidden;
+          }
+          #ld-bar {
+            height: 100%; width: 0%; background: #fff;
+            border-radius: 999px;
+            transition: width 0.3s ease;
+          }
+        `,
+          }}
+        />
+
+        {/* Runs immediately on first byte — no React, no bundles */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            (function () {
+              var pct = 0;
+              var target = 0;
+              var finished = false;
+              var loadFired = false;  // ← track if load already happened
+
+              function setBar(v) {
+                var bar = document.getElementById('ld-bar');
+                var num = document.getElementById('ld-num');
+                if (bar) bar.style.width = v + '%';
+                if (num) num.textContent = v + '%';
+              }
+
+              function tick() {
+                if (finished) return;
+                var diff = target - pct;
+                if (Math.abs(diff) > 0.1) {
+                  pct += diff * 0.08;
+                } else {
+                  pct = target; // snap when close enough
+                }
+                setBar(Math.min(100, Math.round(pct)));
+
+                if (loadFired && pct >= 99.5) {
+                  finished = true;
+                  pct = 100;
+                  setBar(100);
+                  var screen = document.getElementById('ld');
+                  if (screen) {
+                    screen.style.opacity = '0';
+                    screen.style.pointerEvents = 'none';
+                    setTimeout(function () { screen.style.display = 'none'; }, 500);
+                  }
+                  return;
+                }
+
+                requestAnimationFrame(tick);
+              }
+
+              // Only advance staggered targets if load hasn't fired yet
+              function stage(t, delay) {
+                setTimeout(function () {
+                  if (!loadFired) target = t;  // ← don't overwrite after load
+                }, delay);
+              }
+
+              stage(20, 0);
+              stage(40, 2000);
+              stage(60, 4000);
+              stage(75, 6000);
+              stage(85, 8000);
+              stage(90, 12000);
+
+              window.addEventListener('load', function () {
+                loadFired = true;
+                target = 100;  // easing will smoothly reach it
+              });
+
+              document.addEventListener('DOMContentLoaded', function () {
+                requestAnimationFrame(tick);
+              });
+            })();
+        `,
+          }}
+        />
+      </head>
+
       <body className="antialiased font-sans bg-bg text-text selection:bg-text selection:text-bg">
+        {/* Loading screen lives outside React tree — never re-renders, never resets */}
+        <div id="ld" suppressHydrationWarning>
+          <div id="ld-num" suppressHydrationWarning>
+            0%
+          </div>
+          <div id="ld-track">
+            <div id="ld-bar" suppressHydrationWarning />
+          </div>
+        </div>
+
         <ThemeProvider>
           <CustomCursor />
           <Navbar />
