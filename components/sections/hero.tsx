@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { PORTOFOLIO } from '@/lib/constant'
 import { Mouse } from 'lucide-react'
+import Link from 'next/link'
 
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%'
 
@@ -57,6 +58,23 @@ export default function Hero({ name, year }: { name: string; year: number }) {
   useEffect(() => {
     const t = setTimeout(() => setStarted(true), 200)
     return () => clearTimeout(t)
+  }, [])
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          window.history.replaceState(null, '', '/')
+        }
+      },
+      { threshold: 0.3 } // reset when 30% of hero is visible
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
   }, [])
 
   const scrambled = useScramble(name.toUpperCase(), started)
@@ -114,20 +132,20 @@ export default function Hero({ name, year }: { name: string; year: number }) {
           transition={{ delay: 1.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="flex gap-4 justify-center flex-wrap"
         >
-          <a
+          <Link
             href="#about"
             data-cursor="hover"
             className="inline-flex items-center gap-2 py-[0.85rem] px-8 bg-text text-bg text-[0.85rem] font-semibold tracking-[0.05em] uppercase border border-text transition-colors duration-300 hover:bg-bg hover:text-text"
           >
             View Work
-          </a>
-          <a
+          </Link>
+          <Link
             href="#contact"
             data-cursor="hover"
             className="inline-flex items-center gap-2 py-[0.85rem] px-8 bg-transparent text-text text-[0.85rem] font-semibold tracking-[0.05em] uppercase border border-border-2 transition-colors duration-300 hover:border-text"
           >
             Contact Me
-          </a>
+          </Link>
         </motion.div>
       </motion.div>
 

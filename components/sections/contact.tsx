@@ -6,6 +6,7 @@ import SectionRevealer from '../section-revealer'
 import { PORTOFOLIO } from '@/lib/constant'
 import { Check, Mail, MapPin, X } from 'lucide-react'
 import { sendContactAction, type ContactState } from '@/app/actions/contact'
+import Link from 'next/link'
 
 const initialState: ContactState = { status: 'idle' }
 
@@ -61,7 +62,10 @@ export default function Contact() {
       : displayStatus
 
   return (
-    <section id="contact" className="py-32 border-t border-border bg-bg">
+    <section
+      id="contact"
+      className="py-32 pb-10 md:pb-32 border-t border-border bg-bg"
+    >
       <div className="max-w-[1200px] mx-auto px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-start">
           {/* Left copy */}
@@ -82,7 +86,7 @@ export default function Contact() {
 
               {/* Contact details */}
               <div className="flex flex-col gap-4">
-                <a
+                <Link
                   href={`mailto:${PORTOFOLIO.EMAIL}`}
                   data-cursor="hover"
                   className="flex items-center gap-3 font-mono text-[0.8rem] text-text-2 transition-colors duration-200 hover:text-text"
@@ -91,7 +95,7 @@ export default function Contact() {
                     <Mail />
                   </span>
                   {PORTOFOLIO.EMAIL}
-                </a>
+                </Link>
                 <p className="flex items-center gap-3 font-mono text-[0.8rem] text-text-2">
                   <span className="text-text-3">
                     <MapPin />

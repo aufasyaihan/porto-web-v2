@@ -14,6 +14,7 @@ import {
   UserRound,
 } from 'lucide-react'
 import { PORTOFOLIO } from '@/lib/constant'
+import { cn } from '@/lib/utils'
 
 const navLinks = [
   { label: 'About', href: '#about' },
@@ -83,6 +84,7 @@ export default function Navbar() {
     const sections = navLinks.map(
       (l) => document.querySelector(l.href) as HTMLElement | null
     )
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -91,8 +93,23 @@ export default function Navbar() {
       },
       { rootMargin: '-40% 0px -55% 0px' }
     )
+
+    // Separate observer for the hero section with looser margin
+    const heroEl = document.querySelector('#hero') as HTMLElement | null
+    const heroObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setActive('')
+      },
+      { threshold: 0.3 } // reset when 30% of hero is visible
+    )
+
     sections.forEach((s) => s && observer.observe(s))
-    return () => observer.disconnect()
+    if (heroEl) heroObserver.observe(heroEl)
+
+    return () => {
+      observer.disconnect()
+      heroObserver.disconnect()
+    }
   }, [])
 
   const closeMenu = () => setMenuOpen(false)
@@ -263,11 +280,12 @@ function MobileNavLink({
       href={href}
       aria-label={label}
       onClick={onClick}
-      className={`flex h-12 min-w-0 flex-1 flex-col items-center justify-center gap-1 border transition-colors duration-200 ${
+      className={cn(
+        'flex h-12 min-w-0 flex-1 flex-col items-center justify-center gap-1 border transition-colors duration-200',
         active
           ? 'border-text bg-text text-bg'
           : 'border-transparent text-text-2 hover:border-border-2 hover:text-text'
-      }`}
+      )}
     >
       {children}
       <span className="max-w-full truncate text-[0.625rem] font-medium leading-none">
